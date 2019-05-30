@@ -2,7 +2,7 @@
 
 > Access to fetch at 'https://www.yourapi.com' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
 
-If you have ever built a web app that wants to interact with a REST API, you might be familiar with this error. If you also built the API, you might have wondered: why did it work with Postman when you're testing your API, but not in the browser. _There must be something wrong with my web app._ However, it is not the case.
+If you have ever built a web app that wants to interact with a REST API, you might be familiar with this error. If you also built the API, you might have wondered: why did it work with Postman when you were testing your API, but not in the browser? _There must be something wrong with my web app._ However, it is not the case.
 
 This article will give you an overall idea of what CORS is, and how to '_fix_' it.
 
@@ -10,9 +10,9 @@ This article will give you an overall idea of what CORS is, and how to '_fix_' i
 
 ## What is CORS
 
-**CORS** stands for Cross-Origin Resource Sharing. It is a mechanism that restricts requests coming from a different domain.
+**CORS** stands for Cross-Origin Resource Sharing. It is a mechanism that restricts requests coming from a different origin (domain). A request coming from a different origin is known as a cross-origin request. Cross-origin requests can be very useful when your site needs to load data from other services.
 
-> Could we include a bit more info here on what CORS is, who implements it, and how?
+CORS allows servers to specify who can access their resources and how. And browsers would follow the servers' policies by sending a _test_ request (preflight) to the server and check whether it is allowed. We will go into a bit more detail in the following sections.
 
 ## Why CORS
 
