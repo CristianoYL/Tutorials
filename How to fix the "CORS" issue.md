@@ -4,7 +4,7 @@
 
 If you have ever built a web app that wants to interact with a REST API, you might be familiar with this error. If you also built the API, you might have wondered: why did it work with Postman when you were testing your API, but not in the browser? *There must be something wrong with my web app.* However, this is probably not the case.
 
-This article will give you an overall idea of what CORS is, and how to '*fix*' it.
+This article will give you an overall idea of what CORS is, and how to '_fix_' it.
 
 # **CORS**
 
@@ -22,7 +22,7 @@ The rationale behind it is to allow the server (API) on one origin to restrict b
 
 When the browser is about to send a request that will trigger CORS to a different origin, e.g. a **PUT** request, it will not send the actual request immediately. Instead, it will send what's called a *preflight* request, which serves as a *test* as to whether the server will allow the communication. If the server permits, in response to the preflight request, the browser will then send the actual request. Otherwise, it will reject the request, returning a 405 status code and the error message shown at the start of this post.
 
-## **References**
+## **More about CORS**
 
 So far, I've provided a very brief explanation of CORS. For those who wants to dig deeper, you can find a more thorough explanation of CORS on the MDN: [https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS).
 
@@ -41,10 +41,10 @@ Here's a code snippet from [https://enable-cors.org/server_nginx.html](https://
     if ($request_method = 'OPTIONS') {
       add_header 'Access-Control-Allow-Origin' '*';
       add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
-    
+
       # Custom headers and headers various browsers *should* be OK with but aren't
       add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range';
-    
+
       # Tell client that this pre-flight info is valid for 20 days
       add_header 'Access-Control-Max-Age' 1728000;
       add_header 'Content-Type' 'text/plain; charset=utf-8';
@@ -71,7 +71,7 @@ There is no universal server-side language or framework, but we can at least sho
 Here I'm going to use a **Flask** app for demonstration, which is a very popular **Python** framework (sorry **Django** lovers!).
 
     app = Flask(__name__)
-    
+
     @app.after_request
     def after_request(response):
         response.headers.add('Access-Control-Allow-Origin', '*')
@@ -94,4 +94,4 @@ There are also tutorials on how to turn off the CORS check on browsers, but we w
 
 # **Conclusion**
 
-This post provided a very high-level view on the CORS policy. There're a lot more to learn, which can be found in the references section at the top. I've tailored the solutions to different scenarios to help you find the solution that suits your needs. I hope you find this article helpful, since I've personally encountered these scenarios and wished for an article like this one. Cheers!
+This post provided a very high-level view on the CORS policy. There're a lot more to learn, which can be found in the [More bout CORS](#More-about-CORS) section at the top. I've tailored the solutions to different scenarios to help you find the solution that suits your needs. I hope you find this article helpful, since I've personally encountered these scenarios and wished for an article like this one. Cheers!
